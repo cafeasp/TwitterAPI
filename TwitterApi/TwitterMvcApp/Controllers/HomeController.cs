@@ -13,14 +13,16 @@ namespace TwitterMvcApp.Controllers
     {
         private string Key = System.Configuration.ConfigurationManager.AppSettings["Key"];
         private string Secret = System.Configuration.ConfigurationManager.AppSettings["Secret"];
-
+        private string userToken = System.Configuration.ConfigurationManager.AppSettings["userToken"];
+        private string userSecret = System.Configuration.ConfigurationManager.AppSettings["userSecret"];
         public ActionResult Index()
         {
             var t = new TwitterApi.Twitter();
-           var url = t.GetRequestToken(Key,Secret, "http://735cec48.ngrok.io/Twitter/Auth");
+            //var url = t.GetRequestToken(Key,Secret, "http://8b2ac84b.ngrok.io/Twitter/Auth");
 
-            return Redirect(url);
-            
+            //return Redirect(url);
+            t.UpdateStatus("Happy customers, Happy day", Key, Secret, userToken, userSecret);
+            return View();
         }
         public ActionResult Welcome(string screenName)
         {

@@ -8,8 +8,8 @@ namespace TwitterMvcApp.Controllers
 {
     public class TwitterController : Controller
     {
-        private static string Key = System.Configuration.ConfigurationManager.AppSettings["Key"];
-        private static string Secret = System.Configuration.ConfigurationManager.AppSettings["Secret"];
+        private string Key = System.Configuration.ConfigurationManager.AppSettings["Key"];
+        private string Secret = System.Configuration.ConfigurationManager.AppSettings["Secret"];
 
         public ActionResult Auth(string oauth_token,string oauth_verifier)
         {

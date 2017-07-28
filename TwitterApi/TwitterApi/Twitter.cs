@@ -11,7 +11,20 @@ namespace TwitterApi
 {
     public class Twitter
     {
-      
+        public void UpdateStatus(string status,string key,string secret,string token,string tokenSecret)
+        {
+            var client = new RestClient("https://api.twitter.com");
+
+            var request = new RestRequest("/1.1/statuses/update.json", Method.POST);
+
+            request.AddQueryParameter("status", status);
+
+            client.Authenticator = OAuth1Authenticator.ForProtectedResource(key, secret, token, tokenSecret);
+
+            var response = client.Execute(request);
+
+
+        }
         public string GetRequestToken(string key,string secret,string callBackUrl)
         {
             var client = new RestClient("https://api.twitter.com");
