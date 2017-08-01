@@ -11,6 +11,10 @@ namespace TwitterApi
 {
     public class Twitter
     {
+        public void GetTimeLine(string key,string secret,string userToken,string userSecret)
+        {
+
+        }
         public void UpdateStatus(string status,string key,string secret,string token,string tokenSecret)
         {
             var client = new RestClient("https://api.twitter.com");
