@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using TwitterApi;
 
 namespace TwitterMvcApp.Controllers
 {
@@ -17,11 +18,11 @@ namespace TwitterMvcApp.Controllers
         private string userSecret = System.Configuration.ConfigurationManager.AppSettings["userSecret"];
         public ActionResult Index()
         {
-            var t = new TwitterApi.Twitter();
+            var t = new Twitter();
             //var url = t.GetRequestToken(Key,Secret, "http://8b2ac84b.ngrok.io/Twitter/Auth");
-            
+            t.GetTimeLine(Key,Secret,userToken,userSecret);
             //return Redirect(url);
-            t.UpdateStatus("It's finally Friday, maybe :|", Key, Secret, userToken, userSecret);
+            //t.UpdateStatus("Happy customers, Happy day", Key, Secret, userToken, userSecret);
             return View();
         }
         public ActionResult Welcome(string screenName)
