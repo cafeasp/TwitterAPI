@@ -19,9 +19,9 @@ namespace TwitterMvcApp.Controllers
         {
             var t = new TwitterApi.Twitter();
             //var url = t.GetRequestToken(Key,Secret, "http://8b2ac84b.ngrok.io/Twitter/Auth");
-
+            
             //return Redirect(url);
-            t.UpdateStatus("Happy customers, Happy day", Key, Secret, userToken, userSecret);
+            t.UpdateStatus("It's finally Friday, maybe :|", Key, Secret, userToken, userSecret);
             return View();
         }
         public ActionResult Welcome(string screenName)
