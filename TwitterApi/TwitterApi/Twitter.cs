@@ -15,7 +15,8 @@ namespace TwitterApi
             TwitterApiUrl = "https://api.twitter.com";
             Client = new RestClient(TwitterApiUrl);
         }
-        public void GetTimeLine(string key,string secret,string userToken,string userSecret)
+
+        public string GetTimeLine(string key,string secret,string userToken,string userSecret)
         {
             var request = new RestRequest("/1.1/statuses/user_timeline.json", Method.GET);
 
@@ -23,6 +24,14 @@ namespace TwitterApi
 
             var response = Client.Execute(request);
 
+            if(response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return response.Content;
+            }
+            else
+            {
+                return string.Empty;
+            }
 
         }
         public void UpdateStatus(string status,string key,string secret,string token,string tokenSecret)

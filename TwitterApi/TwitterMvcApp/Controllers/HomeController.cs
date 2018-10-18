@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TwitterApi;
-
+using TwitterMvcApp.Models;
 namespace TwitterMvcApp.Controllers
 {
     public class HomeController : Controller
@@ -20,7 +21,17 @@ namespace TwitterMvcApp.Controllers
         {
             var t = new Twitter();
             //var url = t.GetRequestToken(Key,Secret, "http://8b2ac84b.ngrok.io/Twitter/Auth");
-            t.GetTimeLine(Key,Secret,userToken,userSecret);
+
+            var timeLineAsString = t.GetTimeLine(Key,Secret,userToken,userSecret);
+
+            if (!string.IsNullOrEmpty(timeLineAsString))
+            {
+                TwitterTimeLineModel[] twitterTimeLineModels = JsonConvert.DeserializeObject<TwitterTimeLineModel[]>(timeLineAsString);
+                
+            }
+
+
+
             //return Redirect(url);
             //t.UpdateStatus("Happy customers, Happy day", Key, Secret, userToken, userSecret);
             return View();
